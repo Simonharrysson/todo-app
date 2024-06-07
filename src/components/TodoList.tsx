@@ -12,12 +12,22 @@ function TodoList() {
     const [tasks, setTasks] = useState<Task[]>([
         {
             id: 1,
-            text: 'Doctor Appointment',
+            text: 'Wake up',
             completed: true
         },
         {
             id: 2,
-            text: 'Meeting at School',
+            text: 'Get dressed',
+            completed: true
+        },
+        {
+            id: 3,
+            text: 'Shower',
+            completed: true
+        },
+        {
+            id: 4,
+            text: 'Cancel onlyfans subscription',
             completed: false
         }
     ]);
@@ -50,13 +60,27 @@ function TodoList() {
     
     const getCurrentDate = () => {
         const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date().toLocaleDateString(undefined, options);
+        return new Date().toLocaleDateString('en-US', options);
+    }
+
+    function clearAll() {
+        setTasks([]);
     }
 
     return (
         <div className="todo-list">
-            <h1>My Todo-list</h1>
+            <h1 className='title'>Todo-list</h1>
             <h3>{getCurrentDate()}</h3>
+            <input
+                placeholder="New task"
+                value={text}
+                type='text'
+                onChange = { e => setText(e.target.value)}
+            />
+            
+            <button className='add' onClick={() => addTask(text) }>+</button>
+            <button onClick={() => clearAll() }>Clear all</button>
+
             {tasks.map(task => (
                 <TodoItem
                     key={task.id} 
@@ -65,13 +89,9 @@ function TodoList() {
                     toggleCompleted={toggleCompleted}
                 />
             ))}
-            <input
-                placeholder="What's on your mind?"
-                value={text}
-                type='text'
-                onChange = { e => setText(e.target.value)}
-            />
-            <button onClick={() => addTask(text) }>+</button>
+            {tasks.length > 0 &&  
+                <p>You have {tasks.length} pending tasks.</p>
+            }
         </div>
     );
 }

@@ -19,7 +19,7 @@ const TodoItem = ({ task, deleteTask, toggleCompleted }: TodoItemProps) => {
     }
 
     return (
-        <div className="todo-item">
+        <div id={String(task.id)} className="todo-item">
             <input 
                 type="checkbox"
                 checked={task.completed}

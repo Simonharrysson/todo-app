@@ -16,7 +16,7 @@
   padding: 15px;
   margin: 10px 0;
   background-color: white;
-  border: 2px solid #ffd54f;
+  border: 2px solid cornflowerblue;
   border-radius: 8px;
   transition: transform 0.2s;
   transform: perspective(1px) translateZ(0); /* counteract weird blur */ 
@@ -64,11 +64,31 @@ p {
   background-color: #ef5350;
 }
 
+@keyframes slideIn {
+  from {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.todo-item {
+  animation: slideIn 0.6s forwards;
+}
+
+
+
+
+
+
 /* Styles for the input field */
 .todo-list input[type="text"] {
   width: calc(30% - 20px);
   height: 35px;
-  border: 2px solid #ffd54f;
+  border: 2px solid cornflowerblue;
   background-color: white;
   border-radius: 8px;
   margin-right: 10px;
@@ -81,7 +101,7 @@ p {
 .todo-list > button {
   padding: 10px 15px;
   margin-left: 10px;
-  background-color: #4caf50;
+  background-color: #ef5350;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -91,8 +111,12 @@ p {
 }
 
 .todo-list > button:hover {
-  background-color: #45a049;
+  background-color: red;
   transform: scale(1.05);
+}
+
+.add {
+  background: linear-gradient(to right, #f5009b, #25baff);
 }
 
 /* Add a subtle background gradient */
@@ -101,20 +125,12 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-/* Add some elegant font and animation for headers */
-h1, h2, h3 {
-  text-align: left;
-  font-family: 'Arial', serif;
-  color: black;
-  animation: fadeIn 2s ease-in-out;
+h3 {
+  margin-top: 4px;
 }
 
-/* Keyframes for fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.title {
+  margin-bottom: 4px;
 }
+
+
